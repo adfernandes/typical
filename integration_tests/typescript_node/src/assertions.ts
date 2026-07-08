@@ -1,5 +1,5 @@
-import { deepStrictEqual } from 'assert';
-import { unlinkSync, writeFileSync } from 'fs';
+import { deepStrictEqual } from 'node:assert';
+import { unlinkSync, writeFileSync } from 'node:fs';
 
 // The "omnifile" records the bytes of every message serialized by the exported functions below.
 // It's used to validate that the TypeScript code generator encodes data identically to other code
@@ -13,10 +13,10 @@ try {
   // Attempting to delete the file will fail if the file doesn't exist. This is harmless.
 }
 
-export function assertMatch<O, I>(
+export function assertMatch<O>(
   size: (message: O) => number,
   serialize: (message: O) => ArrayBuffer,
-  deserialize: (bytes: ArrayBuffer) => I,
+  deserialize: (bytes: ArrayBuffer) => unknown,
   actual: O,
   expected: unknown,
 ): void {
@@ -37,11 +37,11 @@ export function assertMatch<O, I>(
   console.log('Message deserialized from those bytes:', replica);
 }
 
-export function assertRoundTrip<O, I, V extends O>(
+export function assertRoundTrip<O>(
   size: (message: O) => number,
   serialize: (message: O) => ArrayBuffer,
-  deserialize: (bytes: ArrayBuffer) => I,
-  message: V,
+  deserialize: (bytes: ArrayBuffer) => unknown,
+  message: O,
 ): void {
   assertMatch(size, serialize, deserialize, message, message);
 }

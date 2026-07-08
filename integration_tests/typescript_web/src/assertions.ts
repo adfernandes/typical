@@ -10,16 +10,16 @@ const omnifileBuffer = new ArrayBuffer(omnifileSize);
 const omnifileArray = new Uint8Array(omnifileBuffer);
 let omnifileOffset = 0;
 
-function deepStrictEqual<T, U>(x: T, y: U): void {
+function deepStrictEqual(x: unknown, y: unknown): void {
   if (!isEqual(x, y)) {
     throw new Error('Mismatch!');
   }
 }
 
-export function assertMatch<O, I>(
+export function assertMatch<O>(
   size: (message: O) => number,
   serialize: (message: O) => ArrayBuffer,
-  deserialize: (bytes: ArrayBuffer) => I,
+  deserialize: (bytes: ArrayBuffer) => unknown,
   actual: O,
   expected: unknown,
 ): void {
@@ -42,11 +42,11 @@ export function assertMatch<O, I>(
   console.log('Message deserialized from those bytes:', replica);
 }
 
-export function assertRoundTrip<O, I, V extends O>(
+export function assertRoundTrip<O>(
   size: (message: O) => number,
   serialize: (message: O) => ArrayBuffer,
-  deserialize: (bytes: ArrayBuffer) => I,
-  message: V,
+  deserialize: (bytes: ArrayBuffer) => unknown,
+  message: O,
 ): void {
   assertMatch(size, serialize, deserialize, message, message);
 }

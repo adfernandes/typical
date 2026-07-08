@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, unlinkSync } from 'fs';
+import { readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { unreachable } from '../generated/common';
 import { SendEmailRequest, SendEmailResponse } from '../generated/types';
 

@@ -4,7 +4,17 @@ import runDegenerate from './degenerate';
 import runSchemaEvolution from './schema-evolution';
 import { verifyOmnifile } from './assertions';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = 'Running integration tests\u2026';
+function setStatus(message: string): void {
+  const app = document.querySelector<HTMLDivElement>('#app');
+
+  if (app === null) {
+    throw new Error('Missing app element.');
+  }
+
+  app.innerHTML = message;
+}
+
+setStatus('Running integration tests\u2026');
 
 window.requestAnimationFrame(() => {
   try {
@@ -30,5 +40,5 @@ window.requestAnimationFrame(() => {
     throw e;
   }
 
-  document.querySelector<HTMLDivElement>('#app')!.innerHTML = 'Integration tests passed.';
+  setStatus('Integration tests passed.');
 });

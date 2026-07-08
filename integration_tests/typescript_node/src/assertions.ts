@@ -9,8 +9,7 @@ const omnifilePath = '/tmp/omnifile-typescript';
 
 try {
   unlinkSync(omnifilePath);
-  // oxlint-disable-next-line @typescript-eslint/no-unused-vars
-} catch (_) {
+} catch {
   // Attempting to delete the file will fail if the file doesn't exist. This is harmless.
 }
 

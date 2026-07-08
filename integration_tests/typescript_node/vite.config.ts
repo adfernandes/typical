@@ -24,20 +24,6 @@ export default defineConfig({
     },
     overrides: [
       {
-        files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
-        rules: {
-          'no-case-declarations': 'deny',
-          'no-fallthrough': 'deny',
-          'no-prototype-builtins': 'deny',
-          'no-redeclare': 'deny',
-          'no-undef': 'deny',
-          'no-useless-assignment': 'deny',
-        },
-        env: {
-          node: true,
-        },
-      },
-      {
         files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
         rules: {
           'constructor-super': 'allow',

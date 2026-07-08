@@ -1,4 +1,4 @@
-// oxlint-disable no-console no-undefined -- Schema evolution fixtures intentionally encode absent optional fields.
+// oxlint-disable no-console -- Schema evolution tests print progress between cases.
 import {
   ExampleChoice as AfterExampleChoice,
   type ExampleChoiceIn as AfterExampleChoiceIn,

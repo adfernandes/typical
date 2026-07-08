@@ -1,4 +1,4 @@
-// oxlint-disable no-console no-undefined unicorn/no-array-for-each -- Integration fixtures print diagnostics, encode absent optional fields, and use array-driven cases.
+// oxlint-disable no-console unicorn/no-array-for-each -- Integration fixtures print diagnostics and use array-driven cases.
 import { Bar, Foo } from '../generated/comprehensive/types';
 import { assertMatch, assertRoundTrip } from './assertions';
 

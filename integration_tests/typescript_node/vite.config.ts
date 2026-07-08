@@ -41,9 +41,6 @@ export default defineConfig({
           'no-unreachable': 'allow',
           'no-unsafe-negation': 'allow',
           'no-with': 'allow',
-          'prefer-const': 'deny',
-          'prefer-rest-params': 'deny',
-          'prefer-spread': 'deny',
         },
       },
     ],
@@ -51,11 +48,7 @@ export default defineConfig({
     rules: {
       'no-console': 'allow',
       'no-undefined': 'allow',
-      'no-array-constructor': 'deny',
-      'typescript/ban-ts-comment': 'deny',
-      'typescript/no-unsafe-function-type': 'deny',
       'unicorn/no-array-for-each': 'allow',
-      'vite-plus/prefer-vite-plus-imports': 'deny',
     },
   },
 });

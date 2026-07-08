@@ -23,5 +23,8 @@ export default defineConfig({
       typeCheck: true,
     },
     plugins: ['oxc', 'typescript', 'unicorn'],
+    rules: {
+      'oxc/no-async-await': 'allow',
+    },
   },
 });

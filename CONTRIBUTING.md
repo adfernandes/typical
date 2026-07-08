@@ -48,30 +48,4 @@ macro_rules! my_macro {
 
 ## Guidelines for generated code
 
-Generally speaking, we aim to have generated code follow the same standards as handwritten code, except when doing so would add significant complexity to the code generator. Below are some additional language-specific considerations.
-
-### Rust
-
-Typical is designed to be invoked by a [Cargo build script](https://doc.rust-lang.org/cargo/reference/build-scripts.html). See the [example project](https://github.com/stepchowfun/typical/tree/main/examples/rust) for how to set that up. The user is expected to create a dedicated source file which locally disables lint checks for that file and then includes the generated code as follows:
-
-```rust
-#![allow(clippy::all, clippy::pedantic, clippy::nursery, warnings)]
-
-include!(concat!(env!("OUT_DIR"), "/types.rs"));
-```
-
-Note that the Rust integration test [disables specific checks](https://github.com/stepchowfun/typical/blob/main/integration_tests/rust/src/types.rs) rather than all of them to help us keep track of which checks we are violating.
-
-### TypeScript
-
-To ensure it will pass formatting checks now and in the future, the generated code should disable [Prettier](https://prettier.io/) for all top-level constructs as follows:
-
-```typescript
-// prettier-ignore
-```
-
-To ensure it will pass lint checks now and in the future, the generated code should disable [ESLint](https://eslint.org/) at the file level as follows:
-
-```typescript
-// eslint-disable
-```
+Generally speaking, we aim to have generated code follow the same standards as handwritten code, except when doing so would add significant complexity to the code generator.

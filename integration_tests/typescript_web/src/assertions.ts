@@ -1,3 +1,4 @@
+// oxlint-disable no-console -- Integration tests print serialized messages for diagnostics.
 import { isEqual } from 'lodash';
 import { sha256 } from 'js-sha256';
 

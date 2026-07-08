@@ -1,3 +1,4 @@
+// oxlint-disable no-console -- The benchmark reports measurements to stdout.
 import { hrtime } from 'node:process';
 import { Message, Struct } from '../generated/types';
 

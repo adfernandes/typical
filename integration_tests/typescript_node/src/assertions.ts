@@ -1,3 +1,4 @@
+// oxlint-disable no-console -- Integration tests print serialized messages for diagnostics.
 import { deepStrictEqual } from 'node:assert';
 import { unlinkSync, writeFileSync } from 'node:fs';
 

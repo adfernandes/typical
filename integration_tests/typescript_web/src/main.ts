@@ -1,3 +1,4 @@
+// oxlint-disable no-console -- Integration tests print progress between cases.
 import runCircularDependency from './circular-dependency';
 import runComprehensive from './comprehensive';
 import runDegenerate from './degenerate';

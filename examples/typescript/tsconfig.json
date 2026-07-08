@@ -1,8 +1,14 @@
 {
   "compilerOptions": {
+    "target": "es2023",
     "module": "nodenext",
+    "moduleDetection": "force",
     "outDir": "dist",
-    "types": ["node"]
+    "types": ["node"],
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "strict": true
   },
-  "include": ["src"]
+  "include": ["src", "vite.config.ts"]
 }

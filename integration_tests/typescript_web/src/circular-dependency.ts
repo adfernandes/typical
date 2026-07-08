@@ -1,3 +1,4 @@
+// oxlint-disable no-console -- Integration tests print progress between cases.
 import { StructFromBelow } from '../generated/circular_dependency/dependency/types';
 import { StructFromAbove } from '../generated/circular_dependency/types';
 import { assertRoundTrip } from './assertions';

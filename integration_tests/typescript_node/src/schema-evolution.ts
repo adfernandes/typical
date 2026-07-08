@@ -1,3 +1,4 @@
+// oxlint-disable no-console -- Schema evolution tests print progress between cases.
 import {
   ExampleChoice as AfterExampleChoice,
   type ExampleChoiceIn as AfterExampleChoiceIn,

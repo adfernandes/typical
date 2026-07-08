@@ -1,4 +1,5 @@
-import { hrtime } from 'process';
+// oxlint-disable no-console -- The benchmark reports measurements to stdout.
+import { hrtime } from 'node:process';
 import { Message, Struct } from '../generated/types';
 
 const pathologicalIterations = 5_000;
@@ -66,10 +67,10 @@ const s64TestValues: bigint[] = [
   s64Max,
 ];
 
-function benchmark<T, U, V extends { $size: number }>(
+function benchmark<T, V extends { $size: number }>(
   atlas: (message: T) => V,
   serializeWithAtlasUnsafe: (dataView: DataView, offset: number, message: T, atlas: V) => number,
-  deserialize: (dataView: DataView) => U,
+  deserialize: (dataView: DataView) => unknown,
   message: T,
   iterations: number,
 ): void {

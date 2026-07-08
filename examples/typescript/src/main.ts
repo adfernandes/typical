@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync, unlinkSync } from 'fs';
+// oxlint-disable no-console -- This example prints its observable output to stdout.
+import { readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { unreachable } from '../generated/common';
 import { SendEmailRequest, SendEmailResponse } from '../generated/types';
 

@@ -7,23 +7,19 @@ import {
 } from '../generated/degenerate/types';
 import { assertRoundTrip } from './assertions';
 
-// oxlint-disable-next-line @typescript-eslint/no-unused-vars -- We only care that it type checks.
-function initialIn<T>(x: EmptyChoiceIn): T {
+export function initialIn(x: EmptyChoiceIn): never {
   return x;
 }
 
-// oxlint-disable-next-line @typescript-eslint/no-unused-vars -- We only care that it type checks.
-function initialOut<T>(x: EmptyChoiceOut): T {
+export function initialOut(x: EmptyChoiceOut): never {
   return x;
 }
 
-// oxlint-disable-next-line @typescript-eslint/no-unused-vars -- We only care that it type checks.
-function terminalIn<T>(x: T): EmptyStructIn {
+export function terminalIn(_x: unknown): EmptyStructIn {
   return {};
 }
 
-// oxlint-disable-next-line @typescript-eslint/no-unused-vars -- We only care that it type checks.
-function terminalOut<T>(x: T): EmptyStructOut {
+export function terminalOut(_x: unknown): EmptyStructOut {
   return {};
 }
 

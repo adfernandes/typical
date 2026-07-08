@@ -1,3 +1,4 @@
+// oxlint-disable no-console -- Integration fixtures print diagnostics.
 import { Bar, Foo } from '../generated/comprehensive/types';
 import { assertMatch, assertRoundTrip } from './assertions';
 
@@ -306,26 +307,26 @@ export default function run(): void {
     aRequired: null,
   });
 
-  f64TestValues.forEach((bRequired) => {
+  for (const bRequired of f64TestValues) {
     assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
       $field: 'bRequired',
       bRequired,
     });
-  });
+  }
 
-  u64TestValues.forEach((cRequired) => {
+  for (const cRequired of u64TestValues) {
     assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
       $field: 'cRequired',
       cRequired,
     });
-  });
+  }
 
-  s64TestValues.forEach((dRequired) => {
+  for (const dRequired of s64TestValues) {
     assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
       $field: 'dRequired',
       dRequired,
     });
-  });
+  }
 
   assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
     $field: 'eRequired',
@@ -883,7 +884,7 @@ export default function run(): void {
     },
   );
 
-  f64TestValues.forEach((bAsymmetric) => {
+  for (const bAsymmetric of f64TestValues) {
     assertMatch(
       Bar.size,
       Bar.serialize,
@@ -898,9 +899,9 @@ export default function run(): void {
         bAsymmetric,
       },
     );
-  });
+  }
 
-  u64TestValues.forEach((cAsymmetric) => {
+  for (const cAsymmetric of u64TestValues) {
     assertMatch(
       Bar.size,
       Bar.serialize,
@@ -915,9 +916,9 @@ export default function run(): void {
         cAsymmetric,
       },
     );
-  });
+  }
 
-  s64TestValues.forEach((dAsymmetric) => {
+  for (const dAsymmetric of s64TestValues) {
     assertMatch(
       Bar.size,
       Bar.serialize,
@@ -932,7 +933,7 @@ export default function run(): void {
         dAsymmetric,
       },
     );
-  });
+  }
 
   assertMatch(
     Bar.size,
@@ -2538,29 +2539,29 @@ export default function run(): void {
     $fallback,
   });
 
-  f64TestValues.forEach((bOptional) => {
+  for (const bOptional of f64TestValues) {
     assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
       $field: 'bOptional',
       bOptional,
       $fallback,
     });
-  });
+  }
 
-  u64TestValues.forEach((cOptional) => {
+  for (const cOptional of u64TestValues) {
     assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
       $field: 'cOptional',
       cOptional,
       $fallback,
     });
-  });
+  }
 
-  s64TestValues.forEach((dOptional) => {
+  for (const dOptional of s64TestValues) {
     assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
       $field: 'dOptional',
       dOptional,
       $fallback,
     });
-  });
+  }
 
   assertRoundTrip(Bar.size, Bar.serialize, Bar.deserialize, {
     $field: 'eOptional',

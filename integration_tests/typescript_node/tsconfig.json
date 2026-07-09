@@ -5,7 +5,6 @@
     "moduleDetection": "force",
     "outDir": "dist",
     "types": ["node"],
-    "allowImportingTsExtensions": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "rewriteRelativeImportExtensions": true,

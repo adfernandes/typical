@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.16.0] - 2026-07-09
+
+### Added
+- The `generate` subcommand now accepts `--typescript-import-extension` to configure relative import specifiers in generated TypeScript code.
+
+### Changed
+- The TypeScript generator now emits `.ts` import specifiers by default.
+
 ## [0.15.0] - 2026-04-22
 
 ### Changed

@@ -18,10 +18,10 @@ import {
   varintSizeFromValue,
   zigzagDecode,
   zigzagEncode,
-} from '../common';
-import type { Deserializable } from '../common';
+} from '../common.ts';
+import type { Deserializable } from '../common.ts';
 
-import * as _Types from './dependency/types';
+import * as _Types from './dependency/types.ts';
 
 export type StructFromAboveAtlas = {
   $size: number;

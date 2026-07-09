@@ -697,11 +697,16 @@ Arguments:
   <SCHEMA_PATH>  Set the path to the schema
 
 Options:
-      --list-schemas       List the schemas imported by the given schema (and the given schema
-                           itself)
-      --rust-file <PATH>      Set the path to the Rust file to emit
-      --typescript-dir <PATH>  Set the directory in which the TypeScript files will be emitted
-  -h, --help               Print help
+      --list-schemas
+          List the schemas imported by the given schema (and the given schema itself)
+      --rust-file <PATH>
+          Set the path to the Rust file to emit
+      --typescript-dir <PATH>
+          Set the directory in which the TypeScript files will be emitted
+      --typescript-import-extension <EXTENSION>
+          Set the extension to use in TypeScript import specifiers [default: .ts]
+  -h, --help
+          Print help
 ```
 
 ## Installation instructions

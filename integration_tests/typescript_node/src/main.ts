@@ -1,8 +1,8 @@
 // oxlint-disable no-console -- Integration tests print progress between cases.
-import runCircularDependency from './circular-dependency';
-import runComprehensive from './comprehensive';
-import runDegenerate from './degenerate';
-import runSchemaEvolution from './schema-evolution';
+import runCircularDependency from './circular-dependency.ts';
+import runComprehensive from './comprehensive.ts';
+import runDegenerate from './degenerate.ts';
+import runSchemaEvolution from './schema-evolution.ts';
 
 console.log('Running circular dependency integration test\u2026\n');
 runCircularDependency();

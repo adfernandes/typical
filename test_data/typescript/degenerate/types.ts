@@ -18,8 +18,8 @@ import {
   varintSizeFromValue,
   zigzagDecode,
   zigzagEncode,
-} from '../common';
-import type { Deserializable } from '../common';
+} from '../common.ts';
+import type { Deserializable } from '../common.ts';
 
 export type EmptyStructAtlas = {
   $size: number;

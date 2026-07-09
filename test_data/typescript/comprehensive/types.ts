@@ -18,10 +18,10 @@ import {
   varintSizeFromValue,
   zigzagDecode,
   zigzagEncode,
-} from '../common';
-import type { Deserializable } from '../common';
+} from '../common.ts';
+import type { Deserializable } from '../common.ts';
 
-import * as _Types from '../degenerate/types';
+import * as _Types from '../degenerate/types.ts';
 
 export type LocalStructAtlas = {
   $size: number;

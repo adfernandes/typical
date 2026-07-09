@@ -1,7 +1,7 @@
 // oxlint-disable no-console -- This example prints its observable output to stdout.
 import { readFileSync, unlinkSync, writeFileSync } from 'node:fs';
-import { unreachable } from '../generated/common';
-import { SendEmailRequest, SendEmailResponse } from '../generated/types';
+import { unreachable } from '../generated/common.ts';
+import { SendEmailRequest, SendEmailResponse } from '../generated/types.ts';
 
 const requestFilePath = '/tmp/request';
 const responseFilePath = '/tmp/response';

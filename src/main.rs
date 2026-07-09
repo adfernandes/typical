@@ -80,6 +80,14 @@ struct GenerateArgs {
         help = "Set the directory in which the TypeScript files will be emitted"
     )]
     typescript_dir: Option<PathBuf>,
+
+    #[arg(
+        long,
+        default_value = ".ts",
+        value_name = "EXTENSION",
+        help = "Set the extension to use in TypeScript import specifiers"
+    )]
+    typescript_import_extension: String,
 }
 
 #[derive(Args)]
@@ -118,6 +126,7 @@ fn generate_code(
     list_schemas: bool,
     rust_file: Option<&Path>,
     typescript_directory: Option<&Path>,
+    typescript_import_extension: &str,
 ) -> Result<(), Error> {
     // Load the schema and its transitive dependencies.
     eprintln!("Loading schemas\u{2026}");
@@ -173,10 +182,25 @@ fn generate_code(
 
     // Generate TypeScript code, if applicable.
     if let Some(typescript_directory) = typescript_directory {
+        if !typescript_import_extension.is_empty() && !typescript_import_extension.starts_with('.')
+        {
+            return Err(throw::<Error>(
+                &format!(
+                    "The TypeScript import extension {} must be empty or start with a dot.",
+                    typescript_import_extension.code_str(),
+                ),
+                None,
+                None,
+                None,
+            ));
+        }
+
         eprintln!("Generating TypeScript\u{2026}");
 
         // Generate the code and write it to the files.
-        for (relative_path, contents) in generate_typescript::generate(VERSION, &schemas) {
+        for (relative_path, contents) in
+            generate_typescript::generate(VERSION, &schemas, typescript_import_extension)
+        {
             let output_file_path = typescript_directory.join(&relative_path);
 
             // Create any missing ancestor directories.
@@ -297,6 +321,7 @@ fn entry() -> Result<(), Error> {
                 args.list_schemas,
                 args.rust_file.as_deref(),
                 args.typescript_dir.as_deref(),
+                &args.typescript_import_extension,
             )?;
         }
         TypicalCommand::Format(args) => {

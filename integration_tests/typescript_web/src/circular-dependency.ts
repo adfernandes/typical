@@ -1,7 +1,7 @@
 // oxlint-disable no-console -- Integration tests print progress between cases.
-import { StructFromBelow } from '../generated/circular_dependency/dependency/types';
-import { StructFromAbove } from '../generated/circular_dependency/types';
-import { assertRoundTrip } from './assertions';
+import { StructFromBelow } from '../generated/circular_dependency/dependency/types.ts';
+import { StructFromAbove } from '../generated/circular_dependency/types.ts';
+import { assertRoundTrip } from './assertions.ts';
 
 export default function run(): void {
   assertRoundTrip(StructFromAbove.size, StructFromAbove.serialize, StructFromAbove.deserialize, {

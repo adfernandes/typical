@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "main": "npm run typical && rm -rf dist && tsc --project tsconfig.json && vp build",
+    "main": "npm run typical && tsc --project tsconfig.json && vp build",
     "lint": "npm run typical && vp check",
     "format": "vp fmt && typical format ../types/types.t",
     "typical": "(cd ../.. && cargo run -- generate integration_tests/types/types.t --typescript-dir integration_tests/typescript_web/generated)",
-    "serve": "npm run typical && rm -rf dist && tsc --project tsconfig.json && vp dev"
+    "serve": "npm run typical && tsc --project tsconfig.json && vp dev"
   },
   "dependencies": {
     "js-sha256": "0.11.1",

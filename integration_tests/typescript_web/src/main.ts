@@ -1,9 +1,9 @@
 // oxlint-disable no-console -- Integration tests print progress between cases.
-import runCircularDependency from './circular-dependency';
-import runComprehensive from './comprehensive';
-import runDegenerate from './degenerate';
-import runSchemaEvolution from './schema-evolution';
-import { verifyOmnifile } from './assertions';
+import runCircularDependency from './circular-dependency.ts';
+import runComprehensive from './comprehensive.ts';
+import runDegenerate from './degenerate.ts';
+import runSchemaEvolution from './schema-evolution.ts';
+import { verifyOmnifile } from './assertions.ts';
 
 function setStatus(message: string): void {
   const app = document.querySelector<HTMLDivElement>('#app');

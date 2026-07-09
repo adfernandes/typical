@@ -143,6 +143,7 @@ impl DeclarationFunctionNames {
 pub fn generate(
     typical_version: &str,
     schemas: &BTreeMap<schema::Namespace, (schema::Schema, PathBuf, String)>,
+    import_extension: &str,
 ) -> BTreeMap<PathBuf, String> {
     let mut files = BTreeMap::new();
 
@@ -157,7 +158,14 @@ pub fn generate(
     for (namespace, (schema, _, _)) in schemas {
         let mut buffer = String::new();
         // The `unwrap` is safe because the `std::fmt::Write` impl for `String` is infallible.
-        write_schema_file(&mut buffer, typical_version, namespace, schema).unwrap();
+        write_schema_file(
+            &mut buffer,
+            typical_version,
+            namespace,
+            schema,
+            import_extension,
+        )
+        .unwrap();
         let mut path = PathBuf::new();
         for component in &namespace.components {
             path.push(component.snake_case());
@@ -510,6 +518,7 @@ fn write_schema_file<T: Write>(
     typical_version: &str,
     namespace: &schema::Namespace,
     schema: &schema::Schema,
+    import_extension: &str,
 ) -> Result<(), fmt::Error> {
     write_generated_file_header(buffer, typical_version)?;
 
@@ -518,7 +527,7 @@ fn write_schema_file<T: Write>(
     }
 
     writeln!(buffer)?;
-    write_common_import(buffer, namespace)?;
+    write_common_import(buffer, namespace, import_extension)?;
 
     if !schema.imports.is_empty() {
         writeln!(buffer)?;
@@ -534,6 +543,7 @@ fn write_schema_file<T: Write>(
                     .iter()
                     .map(Identifier::snake_case)
                     .collect::<Vec<_>>(),
+                import_extension,
             );
             writeln!(buffer, "import * as {binding_name} from '{specifier}';")?;
         }
@@ -549,10 +559,12 @@ fn write_schema_file<T: Write>(
 fn write_common_import<T: Write>(
     buffer: &mut T,
     namespace: &schema::Namespace,
+    import_extension: &str,
 ) -> Result<(), fmt::Error> {
     let specifier = relative_module_specifier(
         &namespace_parent_components(namespace),
         &[COMMON_FILE_STEM.to_owned()],
+        import_extension,
     );
 
     writeln!(
@@ -2575,7 +2587,11 @@ fn namespace_parent_components(namespace: &schema::Namespace) -> Vec<String> {
 }
 
 // Compute a relative TypeScript module specifier between component paths.
-fn relative_module_specifier(from_directory: &[String], to: &[String]) -> String {
+fn relative_module_specifier(
+    from_directory: &[String],
+    to: &[String],
+    import_extension: &str,
+) -> String {
     let common_components = from_directory
         .iter()
         .zip(to.iter())
@@ -2596,7 +2612,7 @@ fn relative_module_specifier(from_directory: &[String], to: &[String]) -> String
         components.push(component.clone());
     }
 
-    components.join("/")
+    format!("{}{}", components.join("/"), import_extension)
 }
 
 // Format an import name as a private TypeScript namespace binding.
@@ -2643,7 +2659,7 @@ mod tests {
             expected.insert(path, contents);
         }
 
-        assert_eq!(generate("0.0.0", &schemas), expected);
+        assert_eq!(generate("0.0.0", &schemas, ".ts"), expected);
     }
 
     // Check that TypeScript file paths and import specifiers use `snake_case`.
@@ -2698,7 +2714,7 @@ mod tests {
             ),
         );
 
-        let generated = generate("0.0.0", &schemas);
+        let generated = generate("0.0.0", &schemas, ".ts");
 
         assert!(generated.contains_key(Path::new("foo/first_schema.ts")));
         assert!(generated.contains_key(Path::new("bar/second_schema.ts")));
@@ -2706,7 +2722,37 @@ mod tests {
             generated
                 .get(Path::new("bar/second_schema.ts"))
                 .unwrap()
-                .contains("import * as _FirstSchema from '../foo/first_schema';"),
+                .contains("import * as _FirstSchema from '../foo/first_schema.ts';"),
+        );
+    }
+
+    #[test]
+    fn generate_javascript_import_extension() {
+        let schemas = load_schemas(Path::new("integration_tests/types/types.t")).unwrap();
+        validate(&schemas).unwrap();
+
+        let generated = generate("0.0.0", &schemas, ".js");
+
+        assert!(
+            generated
+                .get(Path::new("schema_evolution/types.ts"))
+                .unwrap()
+                .contains("import * as _After from './after.js';"),
+        );
+    }
+
+    #[test]
+    fn generate_extensionless_imports() {
+        let schemas = load_schemas(Path::new("integration_tests/types/types.t")).unwrap();
+        validate(&schemas).unwrap();
+
+        let generated = generate("0.0.0", &schemas, "");
+
+        assert!(
+            generated
+                .get(Path::new("schema_evolution/types.ts"))
+                .unwrap()
+                .contains("import * as _After from './after';"),
         );
     }
 }

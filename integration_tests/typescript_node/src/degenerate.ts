@@ -4,8 +4,8 @@ import {
   EmptyStruct,
   type EmptyStructIn,
   type EmptyStructOut,
-} from '../generated/degenerate/types';
-import { assertRoundTrip } from './assertions';
+} from '../generated/degenerate/types.ts';
+import { assertRoundTrip } from './assertions.ts';
 
 export function initialIn(x: EmptyChoiceIn): never {
   return x;

@@ -1,6 +1,6 @@
 // oxlint-disable no-console -- Integration fixtures print diagnostics.
-import { Bar, Foo } from '../generated/comprehensive/types';
-import { assertMatch, assertRoundTrip } from './assertions';
+import { Bar, Foo } from '../generated/comprehensive/types.ts';
+import { assertMatch, assertRoundTrip } from './assertions.ts';
 
 const u64Min = 0n;
 const u64Max = 18_446_744_073_709_551_615n;

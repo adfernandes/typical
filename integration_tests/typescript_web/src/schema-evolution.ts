@@ -3,14 +3,14 @@ import {
   ExampleChoice as AfterExampleChoice,
   type ExampleChoiceIn as AfterExampleChoiceIn,
   ExampleStruct as AfterExampleStruct,
-} from '../generated/schema_evolution/after';
+} from '../generated/schema_evolution/after.ts';
 import {
   ExampleChoice as BeforeExampleChoice,
   type ExampleChoiceOut as BeforeExampleChoiceOut,
   ExampleStruct as BeforeExampleStruct,
-} from '../generated/schema_evolution/before';
-import { SingletonChoice, SingletonStruct } from '../generated/schema_evolution/types';
-import { assertMatch } from './assertions';
+} from '../generated/schema_evolution/before.ts';
+import { SingletonChoice, SingletonStruct } from '../generated/schema_evolution/types.ts';
+import { assertMatch } from './assertions.ts';
 
 function choiceTestCases(
   fallbackBefore: BeforeExampleChoiceOut,

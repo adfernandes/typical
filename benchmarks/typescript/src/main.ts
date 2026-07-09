@@ -1,6 +1,6 @@
 // oxlint-disable no-console -- The benchmark reports measurements to stdout.
 import { hrtime } from 'node:process';
-import { Message, Struct } from '../generated/types';
+import { Message, Struct } from '../generated/types.ts';
 
 const pathologicalIterations = 5_000;
 const massiveStringSize = 500_000_000;

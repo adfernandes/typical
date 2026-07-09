@@ -18,11 +18,11 @@ import {
   varintSizeFromValue,
   zigzagDecode,
   zigzagEncode,
-} from '../common';
-import type { Deserializable } from '../common';
+} from '../common.ts';
+import type { Deserializable } from '../common.ts';
 
-import * as _After from './after';
-import * as _Before from './before';
+import * as _After from './after.ts';
+import * as _Before from './before.ts';
 
 export type SingletonStructAtlas = {
   $size: number;

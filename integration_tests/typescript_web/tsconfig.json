@@ -4,6 +4,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "types": ["vite-plus/client"],
+    "allowImportingTsExtensions": true,
     "erasableSyntaxOnly": true,
     "moduleDetection": "force",
     "noEmit": true,

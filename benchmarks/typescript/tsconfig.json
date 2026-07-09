@@ -9,7 +9,8 @@
     "noFallthroughCasesInSwitch": true,
     "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["src", "vite.config.ts"]
 }
